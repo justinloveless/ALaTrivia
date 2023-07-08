@@ -1,0 +1,43 @@
+﻿version: '3.4'
+
+networks:
+  dockerapi-dev:
+    driver: bridge
+    
+services:
+  alatrivia:
+    image: alatrivia
+    depends_on: 
+      - "triviadb"
+    build:
+      context: .
+      dockerfile: ALaTrivia/Dockerfile
+    ports:
+      - "3000:80"
+      - "3030:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - CONNECTION_STRING=mongodb://triviadb:27017
+      - DATABASE_NAME=TriviaDb
+      - COLLECTION_NAME=TriviaQuestions
+      - "OpenAiApiKey=${OPEN_AI_API_KEY}"
+    volumes:
+      - ~/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - ~/.aspnet/https:/root/.aspnet/https/
+    env_file:
+      - .env
+
+  
+  triviadb:
+    image: mongo
+    container_name: triviadb
+    restart: always
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/site:/data/db
+    ports:
+      - "27017:27017"
+
+    
+volumes:
+  db_volume:
