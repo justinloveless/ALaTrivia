@@ -18,8 +18,6 @@ public class OpenAiController : ControllerBase
     private readonly IOpenAIService _openAiService;
     private readonly ITriviaQuestionRepository _triviaQuestionRepository;
 
-    // API Key: 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
-
     public OpenAiController(ILogger<OpenAiController> logger, IOpenAIService openAiService, 
         ITriviaQuestionRepository triviaQuestionRepository)
     {
