@@ -16,18 +16,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddLogging();
 var envApiKey = Environment.GetEnvironmentVariable("OpenAiApiKey");
-Console.WriteLine($"OpenAiApiKey = {envApiKey}");
 builder.Services.AddOpenAIService(settings => { settings.ApiKey = envApiKey ?? "";});
-var databaseSettings = new TriviaDatabaseSettings
-{
-    CollectionName = Environment.GetEnvironmentVariable("COLLECTION_NAME"),
-    ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING"),
-    DatabaseName = Environment.GetEnvironmentVariable("DATABASE_NAME")
-};
-Console.WriteLine($"database Settings: {databaseSettings.DatabaseName} {databaseSettings.CollectionName} {databaseSettings.ConnectionString}");
+var databaseSettings = new TriviaDatabaseSettings();
+builder.Configuration.GetSection("TriviaDatabaseSettings").Bind(databaseSettings);
 builder.Services.AddSingleton(databaseSettings);
-builder.Services.AddScoped<ITriviaQuestionContext, TriviaQuestionContext>();
+builder.Services.AddScoped<IDbContext, DbContext>();
 builder.Services.AddScoped<ITriviaQuestionRepository, TriviaQuestionRepository>();
+builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

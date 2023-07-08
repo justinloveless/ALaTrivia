@@ -3,7 +3,8 @@ using MongoDB.Driver;
 
 namespace ALaTrivia.Data;
 
-public interface ITriviaQuestionContext
+public interface IDbContext
 {
     IMongoCollection<TriviaQuestion> TriviaQuestions { get; }
+    IMongoCollection<UserAccount> UserAccounts { get; }
 }

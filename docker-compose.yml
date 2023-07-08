@@ -20,7 +20,8 @@ services:
       - ASPNETCORE_URLS=http://+:80
       - CONNECTION_STRING=mongodb://triviadb:27017
       - DATABASE_NAME=TriviaDb
-      - COLLECTION_NAME=TriviaQuestions
+      - TRIVIA_COLLECTION=TriviaQuestions
+      - ACCOUNT_COLLECTION=UserAccounts
       - "OpenAiApiKey=${OPEN_AI_API_KEY}"
     volumes:
       - ~/.microsoft/usersecrets/:/root/.microsoft/usersecrets

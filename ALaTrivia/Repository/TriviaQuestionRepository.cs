@@ -6,9 +6,9 @@ namespace ALaTrivia.Repository;
 
 public class TriviaQuestionRepository : ITriviaQuestionRepository
 {
-    private readonly ITriviaQuestionContext _context;
+    private readonly IDbContext _context;
 
-    public TriviaQuestionRepository(ITriviaQuestionContext context)
+    public TriviaQuestionRepository(IDbContext context)
     {
         _context = context;
     }
