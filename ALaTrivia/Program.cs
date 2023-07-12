@@ -22,7 +22,6 @@ builder.Configuration.GetSection("TriviaDatabaseSettings").Bind(databaseSettings
 builder.Services.AddSingleton(databaseSettings);
 builder.Services.AddScoped<IDbContext, DbContext>();
 builder.Services.AddScoped<ITriviaQuestionRepository, TriviaQuestionRepository>();
-builder.Services.AddScoped<IUserAccountRepository, UserAccountRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

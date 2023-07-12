@@ -6,5 +6,4 @@ namespace ALaTrivia.Data;
 public interface IDbContext
 {
     IMongoCollection<TriviaQuestion> TriviaQuestions { get; }
-    IMongoCollection<UserAccount> UserAccounts { get; }
 }

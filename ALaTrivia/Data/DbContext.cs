@@ -13,9 +13,7 @@ public class DbContext : IDbContext
 
         TriviaQuestions = database.GetCollection<TriviaQuestion>(settings.QuestionCollection);
         // TriviaQuestionContextSeed.SeedData(TriviaQuestions); // we'll get to this later
-        UserAccounts = database.GetCollection<UserAccount>(settings.AccountCollection);
     }
 
     public IMongoCollection<TriviaQuestion> TriviaQuestions { get; }
-    public IMongoCollection<UserAccount> UserAccounts { get; }
 }
